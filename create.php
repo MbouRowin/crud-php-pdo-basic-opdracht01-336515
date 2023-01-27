@@ -58,7 +58,7 @@ $stmt->bindValue(':woonplaats', $_POST['woonplaats'], PDO::PARAM_STR);
 $stmt->bindValue(':postcode', $_POST['postcode'], PDO::PARAM_STR);
 $stmt->bindValue(':landnaam', $_POST['landnaam'], PDO::PARAM_STR);
 
-// We vuren de sql-query af op de database
+// We vuren de sql-query af op de database!
 
 $result = $stmt->execute();
 
