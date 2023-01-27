@@ -107,7 +107,7 @@ $result = $statement->fetch(PDO::FETCH_OBJ);
         <br>
 
         <label for="telefoonnummer">Telefoonnummer:</label><br>
-        <input type="text" name="telefoonnummer" id="telefoonnummer" value="<?= $result->Haarkleur; ?>"><br>
+        <input type="text" name="telefoonnummer" id="telefoonnummer" value="<?= $result->Telefoonnummer; ?>"><br>
         <br>
 
         <label for="straatnaam">Straatnaam:</label><br>

@@ -45,22 +45,22 @@ $sql = "INSERT INTO Persoon (Voornaam
                             ,:landnaam)";
 
 // We bereiden de sql-query voor met de method prepare
-$statement = $pdo->prepare($sql);
+$stmt = $pdo->prepare($sql);
 
-$statement->bindValue(':voornaam', $_POST['firstname'], PDO::PARAM_STR);
-$statement->bindValue(':tussenvoegsel', $_POST['infix'], PDO::PARAM_STR);
-$statement->bindValue(':achternaam', $_POST['lastname'], PDO::PARAM_STR);
-$statement->bindValue(':haarkleur', $_POST['haircolor'], PDO::PARAM_STR);
-$statement->bindValue(':telefoonnummer', $_POST['telefoonnummer'], PDO::PARAM_STR);
-$statement->bindValue(':straatnaam', $_POST['straatnaam'], PDO::PARAM_STR);
-$statement->bindValue(':huisnummer', $_POST['huisnummer'], PDO::PARAM_INT);
-$statement->bindValue(':woonplaats', $_POST['woonplaats'], PDO::PARAM_STR);
-$statement->bindValue(':postcode', $_POST['postcode'], PDO::PARAM_STR);
-$statement->bindValue(':landnaam', $_POST['landnaam'], PDO::PARAM_STR);
+$stmt->bindValue(':voornaam', $_POST['firstname'], PDO::PARAM_STR);
+$stmt->bindValue(':tussenvoegsel', $_POST['infix'], PDO::PARAM_STR);
+$stmt->bindValue(':achternaam', $_POST['lastname'], PDO::PARAM_STR);
+$stmt->bindValue(':haarkleur', $_POST['haircolor'], PDO::PARAM_STR);
+$stmt->bindValue(':telefoonnummer', $_POST['telefoonnummer'], PDO::PARAM_STR);
+$stmt->bindValue(':straatnaam', $_POST['straatnaam'], PDO::PARAM_STR);
+$stmt->bindValue(':huisnummer', $_POST['huisnummer'], PDO::PARAM_INT);
+$stmt->bindValue(':woonplaats', $_POST['woonplaats'], PDO::PARAM_STR);
+$stmt->bindValue(':postcode', $_POST['postcode'], PDO::PARAM_STR);
+$stmt->bindValue(':landnaam', $_POST['landnaam'], PDO::PARAM_STR);
 
 // We vuren de sql-query af op de database
 
-$result = $statement->execute();
+$result = $stmt->execute();
 
 if ($result) {
     echo "Er is een nieuw record gemaakt in de database.";
