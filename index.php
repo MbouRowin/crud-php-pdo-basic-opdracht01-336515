@@ -54,10 +54,6 @@
         <input type="text" name="landnaam" id="landnaam"><br>
         <br>
 
-        <label for="haircolor">Haarkleur:</label><br>
-        <input type="text" name="haircolor" id="haircolor"><br>
-        <br>
-
         <input type="submit" value="Verstuur!">
     </form>
 </body>
