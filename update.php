@@ -25,7 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     Voornaam = :voornaam,
     Tussenvoegsel = :tussenvoegsel,
     Achternaam = :achternaam,
-    Haarkleur = :haarkleur
+    Haarkleur = :haarkleur,
+    Telefoonnummer = :telefoonnummer,
+    Straatnaam = :straatnaam,
+    Huisnummer = :huisnummer,
+    Woonplaats = :woonplaats,
+    Postcode = :postcode,
+    Landnaam = :landnaam
     WHERE Id = :id";
 
     $stmt = $pdo->prepare($sql);
@@ -33,6 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $stmt->bindValue("tussenvoegsel", $_POST["infix"]);
     $stmt->bindValue("achternaam", $_POST["lastname"]);
     $stmt->bindValue("haarkleur", $_POST["haircolor"]);
+    $stmt->bindValue(':telefoonnummer', $_POST['telefoonnummer'], PDO::PARAM_STR);
+    $stmt->bindValue(':straatnaam', $_POST['straatnaam'], PDO::PARAM_STR);
+    $stmt->bindValue(':huisnummer', $_POST['huisnummer'], PDO::PARAM_INT);
+    $stmt->bindValue(':woonplaats', $_POST['woonplaats'], PDO::PARAM_STR);
+    $stmt->bindValue(':postcode', $_POST['postcode'], PDO::PARAM_STR);
+    $stmt->bindValue(':landnaam', $_POST['landnaam'], PDO::PARAM_STR);
     $stmt->bindValue("id", $_POST["id"]);
 
     $stmt->execute();
@@ -44,13 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
 // Maak een sql-query voor de database
-$sql = "SELECT Id
-              ,Voornaam
-              ,Tussenvoegsel
-              ,Achternaam
-              ,Haarkleur
-        FROM Persoon
-        WHERE Id = :Id";
+$sql = "SELECT * FROM Persoon WHERE Id = :Id";
 
 // Maak de sql-query klaar om de $_GET['Id'] waarde te koppelen aan de placeholder :Id
 $statement = $pdo->prepare($sql);
@@ -98,6 +104,30 @@ $result = $statement->fetch(PDO::FETCH_OBJ);
 
         <label for="haircolor">Haarkleur:</label><br>
         <input type="text" name="haircolor" id="haircolor" value="<?= $result->Haarkleur; ?>"><br>
+        <br>
+
+        <label for="telefoonnummer">Telefoonnummer:</label><br>
+        <input type="text" name="telefoonnummer" id="telefoonnummer" value="<?= $result->Haarkleur; ?>"><br>
+        <br>
+
+        <label for="straatnaam">Straatnaam:</label><br>
+        <input type="text" name="straatnaam" id="straatnaam" value="<?= $result->Straatnaam; ?>"><br>
+        <br>
+
+        <label for="huisnummer">Huisnummer:</label><br>
+        <input type="text" name="huisnummer" id="huisnummer" value="<?= $result->Huisnummer; ?>"><br>
+        <br>
+
+        <label for="woonplaats">Woonplaats:</label><br>
+        <input type="text" name="woonplaats" id="woonplaats" value="<?= $result->Woonplaats; ?>"><br>
+        <br>
+
+        <label for="postcode">Postcode:</label><br>
+        <input type="text" name="postcode" id="postcode" value="<?= $result->Postcode; ?>"><br>
+        <br>
+
+        <label for="landnaam">Landnaam:</label><br>
+        <input type="text" name="landnaam" id="landnaam" value="<?= $result->Landnaam; ?>"><br>
         <br>
 
         <input type="submit" value="Verstuur!">
