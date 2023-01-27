@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $stmt->execute();
 
     // Stuur de gebruiker door naar de read.php pagina voor het overzicht met een header(Refresh) functie;
-    header("Location: read.php", true, 303);
+    header('Refresh:2; url=read.php');
 
     exit();
 }
