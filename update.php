@@ -13,15 +13,33 @@ try {
     } else {
         echo "Interne server-error";
     }
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     echo $e->getMessage();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     var_dump($_POST);
+
     // Maak een sql update-query en vuur deze af op de database
+    $sql = "UPDATE Persoon SET
+    Voornaam = :voornaam,
+    Tussenvoegsel = :tussenvoegsel,
+    Achternaam = :achternaam,
+    Haarkleur = :haarkleur
+    WHERE Id = :id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue("voornaam", $_POST["firstname"]);
+    $stmt->bindValue("tussenvoegsel", $_POST["infix"]);
+    $stmt->bindValue("achternaam", $_POST["lastname"]);
+    $stmt->bindValue("haarkleur", $_POST["haircolor"]);
+    $stmt->bindValue("id", $_POST["id"]);
+
+    $stmt->execute();
 
     // Stuur de gebruiker door naar de read.php pagina voor het overzicht met een header(Refresh) functie;
+    header("Location: read.php", true, 303);
+
     exit();
 }
 
@@ -47,15 +65,10 @@ $statement->execute();
 $result = $statement->fetch(PDO::FETCH_OBJ);
 
 // var_dump($result);
-
-
-
-
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,25 +77,31 @@ $result = $statement->fetch(PDO::FETCH_OBJ);
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <title>PHP PDO CRUD</title>
 </head>
+
 <body>
     <h1>PHP PDO CRUD</h1>
-    
+
     <form action="update.php" method="post">
+        <input type="hidden" name="id" value="<?= $_GET['Id'] ?>">
 
         <label for="firstname">Voornaam:</label><br>
         <input type="text" name="firstname" id="firstname" value="<?= $result->Voornaam; ?>"><br>
         <br>
+
         <label for="infix">Tussenvoegsel:</label><br>
         <input type="text" name="infix" id="infix" value="<?= $result->Tussenvoegsel; ?>"><br>
         <br>
+
         <label for="lastname">Achternaam:</label><br>
         <input type="text" name="lastname" id="lastname" value="<?= $result->Achternaam; ?>"><br>
         <br>
+
         <label for="haircolor">Haarkleur:</label><br>
         <input type="text" name="haircolor" id="haircolor" value="<?= $result->Haarkleur; ?>"><br>
         <br>
-        <input type="submit" value="Verstuur!">        
 
+        <input type="submit" value="Verstuur!">
     </form>
 </body>
+
 </html>
