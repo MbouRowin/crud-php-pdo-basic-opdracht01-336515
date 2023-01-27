@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $stmt->execute();
 
     // Stuur de gebruiker door naar de read.php pagina voor het overzicht met een header(Refresh) functie;
-    header('Refresh:2; url=read.php');
+    header('Refresh: 3; url=read.php');
 
     exit();
 }

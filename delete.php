@@ -12,7 +12,7 @@ try {
     } else {
         echo "Interne server-error";
     }
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     $e->getMessage();
 }
 
@@ -31,10 +31,8 @@ $result = $statement->execute();
 
 if ($result) {
     echo "Het record is verwijderd";
-    header('Refresh:3; url=read.php');
+    header('Refresh: 3; url=read.php');
 } else {
     echo "Het record is niet verwijderd";
-    header('Refresh:3; url=read.php');
+    header('Refresh: 3; url=read.php');
 }
-
-

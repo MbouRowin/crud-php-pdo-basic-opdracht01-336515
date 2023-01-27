@@ -64,8 +64,8 @@ $result = $stmt->execute();
 
 if ($result) {
     echo "Er is een nieuw record gemaakt in de database.";
-    header('Refresh:2; url=read.php');
+    header('Refresh: 3; url=read.php');
 } else {
     echo "Er is geen nieuw record gemaakt.";
-    header('Refresh:2; url=read.php');
+    header('Refresh: 3; url=read.php');
 }
